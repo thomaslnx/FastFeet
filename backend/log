@@ -1,0 +1,23 @@
+# Progresso aplicação backend fastfeet
+                         Desafio 2: FastFeet, o ínicio
+########################## Etapa 1/4 do Desafio Final ##########################
+
+  * Configurações:
+      Sucrase + Nodemon;
+      ESLint + Prettier + EditorConfig;
+      Banco de Dados PostgreSQL + Sequelize
+
+ - Seed de usuário Admin;
+ - Criação de outros usuário dentro da aplicação;
+ - Criptografia de senha de usuário;
+ - Autenticação JWT;
+ - Criação de Sessão;
+ - Autenticação dos dados de entrada (UserController and SessionController);
+ - Criação do model e controller de Recipient;
+ - Criação do middleware de autenticação;
+ - Criação de recipient somente com usuário logado na aplicação;
+ - Validatação dos dados de entrada no método store do recipient;
+ - Validatação dos dados de entrada no método update do recipient;
+
+                  Desafio 3: FastFeet, continuando a aplicação
+########################## Etapa 2/4 do Desafio Final ##########################
