@@ -21,3 +21,8 @@
 
                   Desafio 3: FastFeet, continuando a aplicação
 ########################## Etapa 2/4 do Desafio Final ##########################
+
+ - Criação da migration do deliver;
+ - Criação da rota de criação de delivers no metodo store do DeliverController;
+ - Criação da rota de listagem de delivers no metodo index do DeliverController;
+ - Upload do avatar do deliver implementado;
