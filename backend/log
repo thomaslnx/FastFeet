@@ -26,3 +26,6 @@
  - Criação da rota de criação de delivers no metodo store do DeliverController;
  - Criação da rota de listagem de delivers no metodo index do DeliverController;
  - Upload do avatar do deliver implementado;
+ - Criação do relacionamento da coluna de avatar_id da tabela delivers com a
+   coluna id da tabela file;
+ - Adicionando validação para dados de entrada no método de criação do deliver;

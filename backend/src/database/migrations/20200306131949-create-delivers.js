@@ -14,8 +14,8 @@ module.exports = {
       },
 
       avatar_id: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: Sequelize.INTEGER,
+        allowNull: true
       },
 
       email: {
