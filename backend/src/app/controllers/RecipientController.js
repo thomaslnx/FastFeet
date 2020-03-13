@@ -71,6 +71,7 @@ class RecipientController {
     if (!(await schema.isValid(req.body))) {
       return res.status(400).json({ error: 'Validation fails' });
     }
+
     const {
       name,
       newName,
@@ -94,7 +95,7 @@ class RecipientController {
 
     if (newName && newName !== name) {
       const updatedRecipient = await recipient.update({
-        name: req.body.newName
+        name: newName
       });
       return res.json(updatedRecipient);
     }

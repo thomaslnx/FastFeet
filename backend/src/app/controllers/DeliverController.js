@@ -50,17 +50,47 @@ class DeliverController {
     const { name, avatar_id, email } = req.body;
     const { id } = req.params;
 
-    if (!id) {
+    const deliver = await Deliver.findByPk(id);
+
+    if (!deliver) {
       return res.status(400).json({ error: 'Deliver does not exists' });
     }
 
-    const deliver = await Deliver.findOne({
+    if (name && name !== deliver.name) {
+      await deliver.update({
+        name
+      });
+
+      return res.json(deliver);
+    }
+
+    if (email && email !== deliver.email) {
+      await deliver.update({
+        email
+      });
+
+      return res.json(deliver);
+    }
+
+    return res.json(deliver);
+  }
+
+  async delete(req, res) {
+    const { id } = req.params;
+
+    const deliver = await Deliver.findByPk(id);
+
+    if (!deliver) {
+      return res.status(400).json({ error: 'Deliver not found' });
+    }
+
+    await deliver.destroy({
       where: {
         id
       }
     });
 
-    return res.json({ ok: true });
+    return res.json({ message: 'Deliver deleted with success' });
   }
 }
 

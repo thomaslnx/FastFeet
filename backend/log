@@ -29,3 +29,17 @@
  - Criação do relacionamento da coluna de avatar_id da tabela delivers com a
    coluna id da tabela file;
  - Adicionando validação para dados de entrada no método de criação do deliver;
+ - Atualização de email e nome do usuário no método update (verificar como será
+   feita a atualização do avatar do usuário) => Verificar necessidade de valida-
+   ção dos dados de entrada;
+ - Criação da rota para deleção de delivers;
+ - Criação da migration create-packages para gestão das encomendas;
+ - Criação do model e controller para a gestão de encomendas;
+ - Validação dos dados de entrada para o controller de gestão de encomendas;
+ - Criação da migration para a tabela signature para armazenar a imagem corres-
+   pondente à assinatura de recebimento do pacote por parte do reciever;
+ - Criação do controller e rota para o armazenamento da imagem da assinatura do
+   reciever no banco de dados;
+ - Criação de migration para adicionar relacionamento entre a coluna signature_id
+   da tabela packages e a coluna id da tabela signature;
+
