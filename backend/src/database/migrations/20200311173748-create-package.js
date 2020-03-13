@@ -25,7 +25,7 @@ module.exports = {
       },
       signature_id: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
       },
       product: {
         type: Sequelize.STRING,
@@ -33,15 +33,15 @@ module.exports = {
       },
       canceled_at: {
         type: Sequelize.DATE,
-        allowNull: false
+        allowNull: true
       },
       start_date: {
         type: Sequelize.DATE,
-        allowNull: false
+        allowNull: true
       },
       end_date: {
         type: Sequelize.DATE,
-        allowNull: false
+        allowNull: true
       },
       created_at: {
         type: Sequelize.DATE,

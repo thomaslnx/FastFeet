@@ -42,4 +42,6 @@
    reciever no banco de dados;
  - Criação de migration para adicionar relacionamento entre a coluna signature_id
    da tabela packages e a coluna id da tabela signature;
+ - Criação do método store no PackageController para o cadastro de um produto
+   para um entregador;
 
