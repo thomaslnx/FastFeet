@@ -44,4 +44,6 @@
    da tabela packages e a coluna id da tabela signature;
  - Criação do método store no PackageController para o cadastro de um produto
    para um entregador;
+ - Adicionada feature de envio de email quando é cadastrado um novo produto para
+   um determinado entregador;
 

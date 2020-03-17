@@ -4,6 +4,8 @@ import Package from '../models/Package';
 import Deliver from '../models/Deliver';
 import Recipient from '../models/Recipient';
 
+import Mail from '../../lib/Mail';
+
 class PackageController {
   async store(req, res) {
     const schema = Yup.object().shape({
@@ -39,9 +41,20 @@ class PackageController {
       return res.status(400).json({ error: 'Deliver does not exists' });
     }
 
-    const parcel = await Package.create(req.body);
+    await Package.create(req.body);
 
-    return res.json(parcel);
+    await Mail.sendMail({
+      to: `${deliveryManExists.name} <${deliveryManExists.email}>`,
+      subject: 'Nova entrega disponível',
+      text: `Olá deliver ${deliveryManExists.name}, você tem uma nova entrega à
+            sua espera!`
+    });
+
+    return res.json({
+      recipient_id,
+      deliveryman_id,
+      product
+    });
   }
 }
 
