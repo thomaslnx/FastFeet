@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+import { resolve } from 'path';
 import Package from '../models/Package';
 
 import Deliver from '../models/Deliver';
@@ -46,8 +47,90 @@ class PackageController {
     await Mail.sendMail({
       to: `${deliveryManExists.name} <${deliveryManExists.email}>`,
       subject: 'Nova entrega disponível',
-      text: `Olá deliver ${deliveryManExists.name}, você tem uma nova entrega à
-            sua espera!`
+      template: 'newdeliver',
+      context: {
+        deliver: deliveryManExists.name
+      },
+      attachments: [
+        {
+          filename: 'fastfeet.png',
+          path: resolve(
+            __dirname,
+            '..',
+            'views',
+            'emails',
+            'assets',
+            'images',
+            'fastfeet.png'
+          ),
+          cid: 'fastfeet'
+        },
+        {
+          filename: 'twitter.png',
+          path: resolve(
+            __dirname,
+            '..',
+            'views',
+            'emails',
+            'assets',
+            'images',
+            'twitter.png'
+          ),
+          cid: 'twitter'
+        },
+        {
+          filename: 'instagram.png',
+          path: resolve(
+            __dirname,
+            '..',
+            'views',
+            'emails',
+            'assets',
+            'images',
+            'instagram.png'
+          ),
+          cid: 'instagram'
+        },
+        {
+          filename: 'linkedin.png',
+          path: resolve(
+            __dirname,
+            '..',
+            'views',
+            'emails',
+            'assets',
+            'images',
+            'linkedin.png'
+          ),
+          cid: 'linkedin'
+        },
+        {
+          filename: 'youtube.png',
+          path: resolve(
+            __dirname,
+            '..',
+            'views',
+            'emails',
+            'assets',
+            'images',
+            'youtube.png'
+          ),
+          cid: 'youtube'
+        },
+        {
+          filename: 'fecebook.png',
+          path: resolve(
+            __dirname,
+            '..',
+            'views',
+            'emails',
+            'assets',
+            'images',
+            'facebook.png'
+          ),
+          cid: 'facebook'
+        }
+      ]
     });
 
     return res.json({

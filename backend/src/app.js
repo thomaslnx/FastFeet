@@ -13,6 +13,8 @@ class App {
 
   middlewares() {
     this.server.use(express.json());
+    // this.server.use(express.static('../node_modules/font-awesome/css'));
+    this.server.use(express.static('./app/views/emails/assets/images'));
   }
 
   routes() {
