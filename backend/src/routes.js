@@ -37,6 +37,7 @@ routes.post('/files', upload.single('file'), FileController.store);
 
 // Rotas para gestão de encomendas
 routes.post('/packages', PackageController.store);
+routes.get('/packages', PackageController.index);
 
 // Rota para upload da imagem da assinatura do reciever
 routes.post(

@@ -139,6 +139,21 @@ class PackageController {
       product
     });
   }
+
+  async index(req, res) {
+    const packages = await Package.findAll();
+
+    const listOfPackages = packages.map(pkg => ({
+      id: pkg.id,
+      recipient_id: pkg.recipient_id,
+      deliveryman_id: pkg.deliveryman_id,
+      canceld_at: pkg.canceled_at,
+      start_date: pkg.start_date,
+      end_date: pkg.end_date
+    }));
+
+    return res.json(listOfPackages);
+  }
 }
 
 export default new PackageController();
