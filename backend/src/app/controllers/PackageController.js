@@ -45,7 +45,8 @@ class PackageController {
     await Package.create(req.body);
 
     await Queue.add(DeliverMail.key, {
-      deliveryManExists
+      deliveryManExists,
+      product
     });
 
     return res.json({

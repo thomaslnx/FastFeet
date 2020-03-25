@@ -7,14 +7,15 @@ class DeliverMail {
   }
 
   async handle({ data }) {
-    const { deliveryManExists } = data;
+    const { deliveryManExists, product } = data;
 
     await Mail.sendMail({
       to: `${deliveryManExists.name} <${deliveryManExists.email}>`,
       subject: 'Nova entrega disponível',
       template: 'newdeliver',
       context: {
-        deliver: deliveryManExists.name
+        deliver: deliveryManExists.name,
+        product
       },
       attachments: [
         {
