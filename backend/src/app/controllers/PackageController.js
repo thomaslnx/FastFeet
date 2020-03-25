@@ -70,6 +70,40 @@ class PackageController {
 
     return res.json(listOfPackages);
   }
+
+  async update(req, res) {
+    const { id } = req.params;
+    const { newPackage } = req.body;
+
+    const packageExist = await Package.findByPk(id);
+
+    if (!packageExist) {
+      return res.status(400).json({ error: 'Packages does not exists' });
+    }
+
+    await packageExist.update({
+      product: newPackage
+    });
+
+    const {
+      recipient_id,
+      product,
+      canceled_at,
+      start_date,
+      end_date
+    } = packageExist;
+
+    return res.json({
+      id,
+      recipient_id,
+      product,
+      canceled_at,
+      start_date,
+      end_date
+    });
+  }
+
+  async delete() {}
 }
 
 export default new PackageController();

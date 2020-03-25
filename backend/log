@@ -50,4 +50,5 @@
    novo produto para entregador;
  - Incluido rota para listagem dos produtos cadastrados;
  - Adicionada feature de Fila usando Redis no envio de emails;
+ - Adicionado Rota para atualização de Encomendas;
 
