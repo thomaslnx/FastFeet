@@ -39,6 +39,7 @@ routes.post('/files', upload.single('file'), FileController.store);
 routes.post('/packages', PackageController.store);
 routes.get('/packages', PackageController.index);
 routes.put('/packages/:id', PackageController.update);
+routes.delete('/packages/:id', PackageController.delete);
 
 // Rota para upload da imagem da assinatura do reciever
 routes.post(

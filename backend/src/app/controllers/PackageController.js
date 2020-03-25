@@ -16,7 +16,7 @@ class PackageController {
       product: Yup.string().required(),
       canceled_at: Yup.date(),
       start_date: Yup.date(),
-      end_date: Yup.date()
+      end_date: Yup.date(),
     });
 
     if (!(await schema.isValid(req.body))) {
@@ -46,27 +46,27 @@ class PackageController {
 
     await Queue.add(DeliverMail.key, {
       deliveryManExists,
-      product
+      product,
     });
 
     return res.json({
       recipient_id,
       deliveryman_id,
-      product
+      product,
     });
   }
 
   async index(req, res) {
     const packages = await Package.findAll();
 
-    const listOfPackages = packages.map(pkg => ({
+    const listOfPackages = packages.map((pkg) => ({
       id: pkg.id,
       recipient_id: pkg.recipient_id,
       deliveryman_id: pkg.deliveryman_id,
       product: pkg.product,
       canceld_at: pkg.canceled_at,
       start_date: pkg.start_date,
-      end_date: pkg.end_date
+      end_date: pkg.end_date,
     }));
 
     return res.json(listOfPackages);
@@ -83,7 +83,7 @@ class PackageController {
     }
 
     await packageExist.update({
-      product: newPackage
+      product: newPackage,
     });
 
     const {
@@ -91,7 +91,7 @@ class PackageController {
       product,
       canceled_at,
       start_date,
-      end_date
+      end_date,
     } = packageExist;
 
     return res.json({
@@ -100,11 +100,23 @@ class PackageController {
       product,
       canceled_at,
       start_date,
-      end_date
+      end_date,
     });
   }
 
-  async delete() {}
+  async delete(req, res) {
+    const { id } = req.params;
+
+    const product = await Package.findByPk(id);
+
+    if (!product) {
+      return res.status(400).json({ error: 'Package not found!' });
+    }
+
+    await product.destroy(id);
+
+    return res.json({ message: 'Package removed successufuly' });
+  }
 }
 
 export default new PackageController();
