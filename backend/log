@@ -46,4 +46,7 @@
    para um entregador;
  - Adicionada feature de envio de email quando é cadastrado um novo produto para
    um determinado entregador;
+ - Finalizado estilização para template de email de notificação para cadastro de
+   novo produto para entregador;
+ - Incluido rota para listagem dos produtos cadastrados;
 

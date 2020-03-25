@@ -1,11 +1,11 @@
 import * as Yup from 'yup';
-import { resolve } from 'path';
 import Package from '../models/Package';
 
 import Deliver from '../models/Deliver';
 import Recipient from '../models/Recipient';
 
-import Mail from '../../lib/Mail';
+import DeliverMail from '../jobs/DeliverMail';
+import Queue from '../../lib/Queue';
 
 class PackageController {
   async store(req, res) {
@@ -44,93 +44,8 @@ class PackageController {
 
     await Package.create(req.body);
 
-    await Mail.sendMail({
-      to: `${deliveryManExists.name} <${deliveryManExists.email}>`,
-      subject: 'Nova entrega disponível',
-      template: 'newdeliver',
-      context: {
-        deliver: deliveryManExists.name
-      },
-      attachments: [
-        {
-          filename: 'fastfeet.png',
-          path: resolve(
-            __dirname,
-            '..',
-            'views',
-            'emails',
-            'assets',
-            'images',
-            'fastfeet.png'
-          ),
-          cid: 'fastfeet'
-        },
-        {
-          filename: 'twitter.png',
-          path: resolve(
-            __dirname,
-            '..',
-            'views',
-            'emails',
-            'assets',
-            'images',
-            'twitter.png'
-          ),
-          cid: 'twitter'
-        },
-        {
-          filename: 'instagram.png',
-          path: resolve(
-            __dirname,
-            '..',
-            'views',
-            'emails',
-            'assets',
-            'images',
-            'instagram.png'
-          ),
-          cid: 'instagram'
-        },
-        {
-          filename: 'linkedin.png',
-          path: resolve(
-            __dirname,
-            '..',
-            'views',
-            'emails',
-            'assets',
-            'images',
-            'linkedin.png'
-          ),
-          cid: 'linkedin'
-        },
-        {
-          filename: 'youtube.png',
-          path: resolve(
-            __dirname,
-            '..',
-            'views',
-            'emails',
-            'assets',
-            'images',
-            'youtube.png'
-          ),
-          cid: 'youtube'
-        },
-        {
-          filename: 'fecebook.png',
-          path: resolve(
-            __dirname,
-            '..',
-            'views',
-            'emails',
-            'assets',
-            'images',
-            'facebook.png'
-          ),
-          cid: 'facebook'
-        }
-      ]
+    await Queue.add(DeliverMail.key, {
+      deliveryManExists
     });
 
     return res.json({
@@ -147,6 +62,7 @@ class PackageController {
       id: pkg.id,
       recipient_id: pkg.recipient_id,
       deliveryman_id: pkg.deliveryman_id,
+      product: pkg.product,
       canceld_at: pkg.canceled_at,
       start_date: pkg.start_date,
       end_date: pkg.end_date
