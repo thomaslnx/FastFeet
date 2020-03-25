@@ -49,4 +49,5 @@
  - Finalizado estilização para template de email de notificação para cadastro de
    novo produto para entregador;
  - Incluido rota para listagem dos produtos cadastrados;
+ - Adicionada feature de Fila usando Redis no envio de emails;
 
