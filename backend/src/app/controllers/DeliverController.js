@@ -7,9 +7,7 @@ class DeliverController {
     const schema = Yup.object().shape({
       name: Yup.string().required(),
       avatar_id: Yup.number(),
-      email: Yup.string()
-        .email()
-        .required()
+      email: Yup.string().email().required(),
     });
 
     if (!(await schema.isValid(req.body))) {
@@ -20,8 +18,8 @@ class DeliverController {
 
     const deliverExists = await Deliver.findOne({
       where: {
-        email
-      }
+        email,
+      },
     });
 
     if (deliverExists) {
@@ -34,7 +32,7 @@ class DeliverController {
 
     return res.json({
       name,
-      email
+      email,
     });
   }
 
@@ -58,7 +56,7 @@ class DeliverController {
 
     if (name && name !== deliver.name) {
       await deliver.update({
-        name
+        name,
       });
 
       return res.json(deliver);
@@ -66,7 +64,7 @@ class DeliverController {
 
     if (email && email !== deliver.email) {
       await deliver.update({
-        email
+        email,
       });
 
       return res.json(deliver);
@@ -86,8 +84,8 @@ class DeliverController {
 
     await deliver.destroy({
       where: {
-        id
-      }
+        id,
+      },
     });
 
     return res.json({ message: 'Deliver deleted with success' });

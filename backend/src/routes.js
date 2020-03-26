@@ -9,6 +9,7 @@ import DeliverController from './app/controllers/DeliverController';
 import FileController from './app/controllers/FileController';
 import PackageController from './app/controllers/PackageController';
 import SignatureController from './app/controllers/SignatureController';
+import DeliverAreaController from './app/controllers/DeliverAreaController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -18,6 +19,9 @@ const upload = multer(multerConfig);
 // Rotas para criação de usuários e sessão
 routes.post('/users', UserController.store);
 routes.post('/sessions', SessionController.store);
+
+// Rotas para acesso do deliver às suas entregas
+routes.get('/deliveryman/:id/deliveries', DeliverAreaController.index);
 
 // Middleware para autenticação
 routes.use(authMiddleware);
