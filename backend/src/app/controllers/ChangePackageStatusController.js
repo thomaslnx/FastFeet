@@ -7,12 +7,8 @@ import Signature from '../models/Signature';
 
 class ChangePackageStatusController {
   async update(req, res) {
-    // Fazer 3 verificações:
-    // Se o entregador existe;
-    // Se o pacote existe;
     const { id } = req.params;
     const { new_start_date, new_end_date } = req.body;
-
     const parcel = await Package.findByPk(id);
 
     // Verifica se o id da entrega está correto
