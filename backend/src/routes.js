@@ -21,7 +21,7 @@ const upload = multer(multerConfig);
 routes.post('/users', UserController.store);
 routes.post('/sessions', SessionController.store);
 
-// Rota para acesso do deliver às suas entregas
+// Rota para acesso do deliver às suas todas as entregas e as realizadas
 routes.get('/deliveryman/:id/allpackages', DeliverAreaController.index);
 routes.get('/deliveryman/:id/deliveries', DeliverAreaController.show);
 
