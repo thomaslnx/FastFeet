@@ -52,7 +52,10 @@
  [x] - Adicionada feature de Fila usando Redis no envio de emails;
  [x] - Adicionado Rota para atualização de Encomendas;
  [x] - Adicionado Rota para remoção de pacotes;
- [x]- Adicionada Rota para que o deliver possa ver suas entregas disponíveis que
+ [x] - Adicionada Rota para que o deliver possa ver suas entregas disponíveis que
    não estão nem canceladas nem foram entregues ainda, ou seja, o signature_id
    ainda é nulo;
+ [x] - Implementada verificação do horário de retirada das encomendas;
+ [x] - implementada contagem de entregas que o deliver pode fazer por dia, que são
+   o total de 5 entregas. (REVISAR ESSE CÓDIGO DEPOIS, FUNCIONA, MAS FICOU FEIO);
 

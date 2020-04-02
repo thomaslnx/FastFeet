@@ -10,6 +10,7 @@ import FileController from './app/controllers/FileController';
 import PackageController from './app/controllers/PackageController';
 import SignatureController from './app/controllers/SignatureController';
 import DeliverAreaController from './app/controllers/DeliverAreaController';
+import ChangePackageStatusController from './app/controllers/ChangePackageStatusController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -20,8 +21,11 @@ const upload = multer(multerConfig);
 routes.post('/users', UserController.store);
 routes.post('/sessions', SessionController.store);
 
-// Rotas para acesso do deliver às suas entregas
+// Rota para acesso do deliver às suas entregas
 routes.get('/deliveryman/:id/deliveries', DeliverAreaController.index);
+
+// Rotas para mudança de estatus e retirada das entregas
+routes.put('/pickpackage/:id', ChangePackageStatusController.update);
 
 // Middleware para autenticação
 routes.use(authMiddleware);
