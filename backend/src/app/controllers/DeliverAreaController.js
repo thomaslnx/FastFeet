@@ -1,7 +1,11 @@
+import Sequelize, { Op } from 'Sequelize';
+
 import Deliver from '../models/Deliver';
 import Package from '../models/Package';
 
 class DeliverAreaController {
+  // lista todas as entregas do deliver que não estejam entregues nem
+  // canceladas.
   async index(req, res) {
     const { id } = req.params;
 
@@ -27,6 +31,22 @@ class DeliverAreaController {
     }
 
     return res.json(listOfPackages);
+  }
+
+  // Lista todas as entregas de determinado deliver que já foram realizadas.
+  async show(req, res) {
+    const { id } = req.params;
+
+    const deliverDone = await Package.findAll({
+      where: {
+        deliveryman_id: id,
+        signature_id: {
+          [Op.ne]: null,
+        },
+      },
+    });
+
+    return res.json(deliverDone);
   }
 }
 

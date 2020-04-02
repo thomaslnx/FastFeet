@@ -1,11 +1,9 @@
-import { parse, format, parseISO } from 'date-fns';
+import { parse, format } from 'date-fns';
 import Sequelize, { Op } from 'Sequelize';
 
 import Package from '../models/Package';
-import Deliver from '../models/Deliver';
-import Signature from '../models/Signature';
 
-class ChangePackageStatusController {
+class PickPackageToDeliverController {
   async update(req, res) {
     const { id } = req.params;
     const { new_start_date, new_end_date } = req.body;
@@ -81,4 +79,4 @@ class ChangePackageStatusController {
   }
 }
 
-export default new ChangePackageStatusController();
+export default new PickPackageToDeliverController();
