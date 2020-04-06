@@ -6,7 +6,7 @@ import Package from '../models/Package';
 class PickPackageToDeliverController {
   async update(req, res) {
     const { id } = req.params;
-    const { new_start_date, new_end_date } = req.body;
+    const { new_start_date } = req.body;
     const parcel = await Package.findByPk(id);
 
     // Verifica se o id da entrega está correto

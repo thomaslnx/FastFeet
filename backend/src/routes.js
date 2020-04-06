@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import multer from 'multer';
-import multerConfig from './config/multer';
+import { avatar, signature } from './config/multer';
 
 import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
@@ -11,11 +11,16 @@ import PackageController from './app/controllers/PackageController';
 import SignatureController from './app/controllers/SignatureController';
 import DeliverAreaController from './app/controllers/DeliverAreaController';
 import PickPackageToDeliverController from './app/controllers/PickPackageToDeliverController';
+import FinishDeliverController from './app/controllers/FinishDeliverController';
 
 import authMiddleware from './app/middlewares/auth';
 
 const routes = new Router();
-const upload = multer(multerConfig);
+const deliverAvatar = multer({ storage: avatar });
+const recipientSignature = multer({ storage: signature });
+
+//console.log('Objeto file:', upload);
+console.log('Objeto signature:', signature);
 
 // Rotas para criação de usuários e sessão
 routes.post('/users', UserController.store);
@@ -25,8 +30,13 @@ routes.post('/sessions', SessionController.store);
 routes.get('/deliveryman/:id/allpackages', DeliverAreaController.index);
 routes.get('/deliveryman/:id/deliveries', DeliverAreaController.show);
 
-// Rotas para mudança de estatus e retirada das entregas
+// Rotas para retirada e finalização das entregas
 routes.put('/pickpackage/:id', PickPackageToDeliverController.update);
+routes.put(
+  '/finishdeliver/:id',
+  recipientSignature.single('signature'),
+  FinishDeliverController.update
+);
 
 // Middleware para autenticação
 routes.use(authMiddleware);
@@ -42,7 +52,8 @@ routes.post('/delivers', DeliverController.store);
 routes.delete('/delivers/:id', DeliverController.delete);
 
 // Rota para upload do avartar do deliver
-routes.post('/files', upload.single('file'), FileController.store);
+//routes.post('/files', upload.single('file'), FileController.store);
+routes.post('/files', deliverAvatar.single('file'), FileController.store);
 
 // Rotas para gestão de encomendas
 routes.post('/packages', PackageController.store);
@@ -53,7 +64,7 @@ routes.delete('/packages/:id', PackageController.delete);
 // Rota para upload da imagem da assinatura do reciever
 routes.post(
   '/signature',
-  upload.single('receiver_signature'),
+  recipientSignature.single('receiver_signature'),
   SignatureController.store
 );
 
