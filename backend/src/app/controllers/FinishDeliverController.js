@@ -1,11 +1,21 @@
 import Sequelize, { Op } from 'Sequelize';
 import { parse, format } from 'date-fns';
+import * as Yup from 'yup';
 
 import Package from '../models/Package';
 import Signature from '../models/Signature';
 
 class FinishDeliverController {
   async update(req, res) {
+    const schema = Yup.object().shape({
+      signature: Yup.string().required(),
+      new_end_date: Yup.string().required(),
+    });
+
+    if (!(await schema.isValid(req.body))) {
+      return res.status(400).json({ error: 'Validation fails' });
+    }
+
     const { originalname: name, filename: path } = req.file;
     const { new_end_date } = req.body;
     const { id } = req.params;
