@@ -56,6 +56,8 @@
    não estão nem canceladas nem foram entregues ainda, ou seja, o signature_id
    ainda é nulo;
  [x] - Implementada verificação do horário de retirada das encomendas;
- [x] - implementada contagem de entregas que o deliver pode fazer por dia, que são
+ [x] - Implementada contagem de entregas que o deliver pode fazer por dia, que são
    o total de 5 entregas. (REVISAR ESSE CÓDIGO DEPOIS, FUNCIONA, MAS FICOU FEIO);
+ [x] - Implementada finalização da entrega com envio da imagem da assinatura do
+   recipient;
 
