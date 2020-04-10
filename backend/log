@@ -57,8 +57,9 @@
    ainda é nulo;
  [x] - Implementada verificação do horário de retirada das encomendas;
  [x] - Implementada contagem de entregas que o deliver pode fazer por dia, que são
-   o total de 5 entregas. (REVISAR ESSE CÓDIGO DEPOIS, FUNCIONA, MAS FICOU FEIO);
+   o total de 5 entregas. (REVISAR ESSE CÓDIGO DEPOIS, "Ñ FUNCIONA BEM", MAS FICOU FEIO);
  [x] - Implementada finalização da entrega com envio da imagem da assinatura do
    recipient;
  [x] - Implementada validação de dados do controler de encerramento das entregas;
+ [x] - Implementado cadastro de problemas na entrega por parte do entregador;
 

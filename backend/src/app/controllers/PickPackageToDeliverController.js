@@ -51,12 +51,17 @@ class PickPackageToDeliverController {
 
       // Conta a quantidade de entregas que o deliveryman retira para entregar, se a
       // quantidade for maior que 5 ele recebe um alerta.
+
+      /***
+       * SOLUÇÃO PRECISA SER MELHORADA. PRECISA SER INFORMADA A DATA REAL COM O TIMEZONE
+       */
+
       if (date) {
         pickDay = await Package.findAndCountAll({
           where: {
-            start_date: {
+            start_date: date /*{
               [Op.ne]: null,
-            },
+            },*/,
           },
         });
         totalPickDay = pickDay.count;

@@ -5,10 +5,19 @@ import Deliver from '../app/models/Deliver';
 import File from '../app/models/File';
 import Package from '../app/models/Package';
 import Signature from '../app/models/Signature';
+import DeliveryProblem from '../app/models/DeliveryProblem';
 
 import databaseConfig from '../config/database';
 
-const models = [User, Recipient, Deliver, File, Package, Signature];
+const models = [
+  User,
+  Recipient,
+  Deliver,
+  File,
+  Package,
+  Signature,
+  DeliveryProblem,
+];
 
 class Database {
   constructor() {
@@ -18,7 +27,7 @@ class Database {
   init() {
     this.connection = new Sequelize(databaseConfig);
 
-    models.map(model => {
+    models.map((model) => {
       // console.log(`Model retornado no console.log => ${model}`);
       return model.init(this.connection);
     });
