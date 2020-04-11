@@ -30,7 +30,7 @@ class DeliveryProblemsController {
 
     // Cadastra o problema com a entrega na tabela delivery_problems
     const problem = await DeliveryProblem.create({
-      packageId,
+      id: packageId,
       description,
     });
 

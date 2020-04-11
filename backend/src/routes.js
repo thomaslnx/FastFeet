@@ -12,6 +12,7 @@ import DeliverAreaController from './app/controllers/DeliverAreaController';
 import PickPackageToDeliverController from './app/controllers/PickPackageToDeliverController';
 import FinishDeliverController from './app/controllers/FinishDeliverController';
 import DeliveryProblemsController from './app/controllers/DeliveryProblemsController';
+import ListDeliveryProblemController from './app/controllers/ListDeliveryProblemController';
 
 import authMiddleware from './app/middlewares/auth';
 
@@ -60,6 +61,10 @@ routes.post('/packages', PackageController.store);
 routes.get('/packages', PackageController.index);
 routes.put('/packages/:id', PackageController.update);
 routes.delete('/packages/:id', PackageController.delete);
+
+// Rotas para distribuidora listar entregas com problemas
+routes.get('/delivery/allproblems', ListDeliveryProblemController.index);
+routes.get('/delivery/:id/problems', ListDeliveryProblemController.show);
 
 // Rota para upload da imagem da assinatura do reciever
 // routes.post(
