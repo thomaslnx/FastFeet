@@ -66,6 +66,12 @@ routes.delete('/packages/:id', PackageController.delete);
 routes.get('/delivery/allproblems', ListDeliveryProblemController.index);
 routes.get('/delivery/:id/problems', ListDeliveryProblemController.show);
 
+// Rota para distribuidora cancelar entrega devido ao problema
+routes.put(
+  '/problem/:packageId/cancel-delivery',
+  ListDeliveryProblemController.update
+);
+
 // Rota para upload da imagem da assinatura do reciever
 // routes.post(
 //   '/signature',

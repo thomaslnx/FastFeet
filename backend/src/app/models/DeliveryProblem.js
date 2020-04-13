@@ -12,6 +12,10 @@ class DeliveryProblem extends Model {
     );
     return this;
   }
+
+  static associate(models) {
+    this.belongsTo(models.Package, { foreignKey: 'id' });
+  }
 }
 
 export default DeliveryProblem;

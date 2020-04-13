@@ -10,10 +10,10 @@ class Package extends Model {
         product: Sequelize.STRING,
         canceled_at: Sequelize.DATE,
         start_date: Sequelize.DATE,
-        end_date: Sequelize.DATE
+        end_date: Sequelize.DATE,
       },
       {
-        sequelize
+        sequelize,
       }
     );
 
