@@ -57,7 +57,11 @@ class PackageController {
   }
 
   async index(req, res) {
-    const packages = await Package.findAll();
+    const packages = await Package.findAll({
+      where: {
+        canceled_at: null,
+      },
+    });
 
     const listOfPackages = packages.map((pkg) => ({
       id: pkg.id,
@@ -76,7 +80,21 @@ class PackageController {
     const { id } = req.params;
     const { newPackage } = req.body;
 
-    const packageExist = await Package.findByPk(id);
+    const packageExist = await Package.findOne({
+      where: {
+        id,
+      },
+      attributes: [
+        'id',
+        'recipient_id',
+        'product',
+        'canceled_at',
+        'start_date',
+        'end_date',
+      ],
+    });
+
+    console.log(packageExist);
 
     if (!packageExist) {
       return res.status(400).json({ error: 'Packages does not exists' });
@@ -86,22 +104,7 @@ class PackageController {
       product: newPackage,
     });
 
-    const {
-      recipient_id,
-      product,
-      canceled_at,
-      start_date,
-      end_date,
-    } = packageExist;
-
-    return res.json({
-      id,
-      recipient_id,
-      product,
-      canceled_at,
-      start_date,
-      end_date,
-    });
+    return res.json(packageExist);
   }
 
   async delete(req, res) {
