@@ -64,4 +64,8 @@
  [x] - Implementado cadastro de problemas na entrega por parte do entregador;
  [x] - Adicionado rotas para a distribuidora listar todos os problemas de uma entrega
    baseada no id e listagem de todas as entregas com problemas;
+ [x] - Adicionada rota para distribuidora cancelar uma entrega de acordo com a gravidade
+   do problema relatado pelo entregador;
+ [x] - Implementado envio de email para o entregador quando a entrega for cancelada problema
+   distribuidora;
 

@@ -1,5 +1,9 @@
 import DeliveryProblem from '../models/DeliveryProblem';
 import Package from '../models/Package';
+import Deliver from '../models/Deliver';
+
+import ParcelCancellationMail from '../jobs/ParcelCancellationMail';
+import Queue from '../../lib/Queue';
 
 class ListDeliveryProblemController {
   // Listar todos as entregas com algum problema.
@@ -67,6 +71,14 @@ class ListDeliveryProblemController {
         'end_date',
       ],
     });
+
+    const deliver = await Deliver.findOne({
+      where: {
+        id: parcelToCancel.Package.deliveryman_id,
+      },
+    });
+
+    Queue.add(ParcelCancellationMail.key, { parcelToCancel, deliver });
 
     return res.json(canceledParcel);
   }
