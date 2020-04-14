@@ -45,7 +45,7 @@ class DeliveryProblemsController {
 
     const problem = await DeliveryProblem.findOne({
       where: {
-        id: packageExist.id,
+        id: packageId,
       },
     });
 
@@ -56,12 +56,16 @@ class DeliveryProblemsController {
     }
 
     // Cadastra o problema com a entrega na tabela delivery_problems
-    problem = await DeliveryProblem.create({
+    const addProblem = await DeliveryProblem.create({
       id: packageId,
       description,
+      attributes: ['id', 'description'],
     });
 
-    return res.json(problem);
+    return res.json({
+      id: addProblem.id,
+      description: addProblem.description,
+    });
   }
 }
 
