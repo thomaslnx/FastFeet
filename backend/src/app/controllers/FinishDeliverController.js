@@ -8,12 +8,17 @@ import Signature from '../models/Signature';
 class FinishDeliverController {
   async update(req, res) {
     const schema = Yup.object().shape({
-      signature: Yup.string().required(),
       new_end_date: Yup.string().required(),
     });
 
     if (!(await schema.isValid(req.body))) {
       return res.status(400).json({ error: 'Validation fails' });
+    }
+
+    if (!req.file) {
+      return res
+        .status(400)
+        .json({ error: 'A recipient signature is required' });
     }
 
     const { originalname: name, filename: path } = req.file;
@@ -31,22 +36,21 @@ class FinishDeliverController {
     );
 
     // Check if current package to deliver is with start_date: null.
-    const currentPackage = await Package.findOne({
-      where: {
-        id,
-        start_date: {
-          [Op.ne]: null,
-        },
-        end_date: null,
-        signature_id: null,
-      },
-    });
+    const currentPackage = await Package.findByPk(id);
 
     // Do not permit which packages without start date be terminated.
-    if (!currentPackage) {
+    if (currentPackage.start_date == null) {
       return res
         .status(400)
         .json({ error: 'Packages without start date cannot been terminated.' });
+    } else if (currentPackage.end_date != null) {
+      return res
+        .status(400)
+        .json({ error: 'This delivery alread has been terminated' });
+    } else if (currentPackage.canceled_at != null) {
+      return res
+        .status(400)
+        .json({ error: "This delivery it's canceled, do not can be done" });
     }
 
     // Make recipiet's signature upload.
