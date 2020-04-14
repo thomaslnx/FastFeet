@@ -15,6 +15,7 @@ class FinishDeliverController {
       return res.status(400).json({ error: 'Validation fails' });
     }
 
+    // Valida se esta sendo enviado a imagem da assinatura do recipient
     if (!req.file) {
       return res
         .status(400)
