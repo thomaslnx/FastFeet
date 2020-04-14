@@ -62,6 +62,8 @@
    recipient;
  [x] - Implementada validação de dados do controler de encerramento das entregas;
  [x] - Implementado cadastro de problemas na entrega por parte do entregador;
+ [x] - Implementada verificação para ver se já existe problema cadastrado para a
+   entrega que está sendo feita;
  [x] - Adicionado rotas para a distribuidora listar todos os problemas de uma entrega
    baseada no id e listagem de todas as entregas com problemas;
  [x] - Adicionada rota para distribuidora cancelar uma entrega de acordo com a gravidade
