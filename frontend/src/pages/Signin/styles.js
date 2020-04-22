@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { darken } from 'polished';
 
 export const Container = styled.div`
   background: #7d40e7;
@@ -26,42 +27,48 @@ export const FormContainer = styled.div`
     margin-bottom: 43px;
     width: 260px;
   }
-`;
 
-export const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  width: 300px;
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
 
-  span {
-    margin-bottom: 10px;
-  }
+    span {
+      margin-bottom: 10px;
+    }
 
-  input {
-    margin-bottom: 15px;
-    height: 45px;
-    weight: 300px;
-    border: 1px solid #dddddd;
-    border-radius: 4px;
-    padding: 12px 15px;
-    font-family: 'Roboto-Regular', sans-serif;
-    font-size: 16px;
-    color: #999999;
-
-    &::placeholder {
+    input {
+      margin-bottom: 15px;
+      height: 45px;
+      weight: 300px;
+      border: 1px solid #dddddd;
+      border-radius: 4px;
+      padding: 0 15px;
       font-family: 'Roboto-Regular', sans-serif;
       font-size: 16px;
-    }
-  }
+      color: #999999;
 
-  button {
-    width: 300px;
-    height: 45px;
-    border-radius: 4px;
-    background: #7d40e7;
-    font-family: 'Roboto', sans-serif;
-    font-weight: bold;
-    font-size: 16px;
-    color: #ffffff;
+      &::placeholder {
+        font-family: 'Roboto-Regular', sans-serif;
+        font-size: 16px;
+      }
+    }
+
+    button {
+      width: 300px;
+      height: 45px;
+      border: 0;
+      border-radius: 4px;
+      background: #7d40e7;
+      font-family: 'Roboto', sans-serif;
+      font-weight: bold;
+      font-size: 16px;
+      color: #ffffff;
+      transition: background 0.2s;
+
+      &:hover {
+        background: ${darken(0.03, '#7d40e7')};
+      }
+    }
   }
 `;
