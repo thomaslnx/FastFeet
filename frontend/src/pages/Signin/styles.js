@@ -33,8 +33,14 @@ export const FormContainer = styled.div`
     flex-direction: column;
     width: 300px;
 
-    span {
+    p {
       margin-bottom: 10px;
+    }
+
+    span {
+      color: #de3b3b;
+      align-self: center;
+      margin-top: -5px;
     }
 
     input {
