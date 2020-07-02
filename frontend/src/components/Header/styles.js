@@ -59,5 +59,7 @@ export const Login = styled.div`
     font-family: Roboto, sans-serif;
     font-weight: 400;
     font-size: 14px;
+    background-color: transparent;
+    border: none;
   }
 `;
