@@ -1,6 +1,9 @@
 import React from 'react';
 import { FaSearch, FaPlus } from 'react-icons/fa';
 import Header from '../../components/Header';
+
+import api from '../../services/api';
+
 import {
   Container,
   Title,
@@ -11,6 +14,8 @@ import {
 } from './styles';
 
 export default function Packages() {
+  api.get('delivers');
+
   return (
     <>
       <Container>
