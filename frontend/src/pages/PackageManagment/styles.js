@@ -74,3 +74,85 @@ export const Cadastrar = styled.div`
     border: none;
   }
 `;
+
+export const ParcelList = styled.div``;
+
+export const ParcelHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #444444;
+  margin-top: 22px;
+`;
+
+export const List = styled.div`
+  display: flex;
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 1350px;
+  height: 57px;
+  border: none;
+  border-radius: 4px;
+  margin-top: 14px;
+
+  ul {
+    display: flex;
+    width: 100%;
+    max-width: 1350px;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
+    color: #666666;
+    padding: 0 25px;
+  }
+
+  li {
+    flex-basis: calc(25% - 20px;);
+  }
+
+  .id {
+    margin-left: -5px;
+  }
+
+  .recipient {
+    margin-left: 35px;
+  }
+
+  .deliver {
+    margin-left: -20px;
+  }
+
+  .city {
+    margin-left: 70px;
+  }
+
+  .state {
+    margin-left: 30px;
+  }
+
+  .status span {
+    background-color: #dff0df;
+    color: #2ca42b;
+    font-size: 14px;
+    font-weight: 700;
+    width: 125px;
+    height: 25px;
+    border: none;
+    border-radius: 12px;
+    padding: 5px 15px;
+
+    svg {
+      width: 10px;
+      height: 10px;
+    }
+  }
+
+  .actions {
+    color: #c6c6c6;
+  }
+`;

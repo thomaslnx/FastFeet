@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { signOut } from '~/store/modules/auth/actions';
 import fastfeet from '../../assets/logo/fastfeet-logo.png';
@@ -9,6 +9,10 @@ import { Container, Logo, VerticalLine, Links, Login, Rotas } from './styles';
 
 export default function Header() {
   const dispatch = useDispatch();
+
+  const user = useSelector((state) => state.user.profile);
+
+  console.tron.log(user);
 
   function handleSignOut() {
     dispatch(signOut());
@@ -38,7 +42,7 @@ export default function Header() {
         </Rotas>
 
         <Login>
-          <div className="user">User</div>
+          <div className="user">{user.email}</div>
           <button type="button" className="logout" onClick={handleSignOut}>
             sair do sistema
           </button>
