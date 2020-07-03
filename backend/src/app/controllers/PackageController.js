@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+import { Op } from 'Sequelize'
 import Package from '../models/Package';
 
 import Deliver from '../models/Deliver';
@@ -57,11 +58,34 @@ class PackageController {
   }
 
   async index(req, res) {
-    const packages = await Package.findAll({
-      where: {
-        canceled_at: null,
-      },
-    });
+    let search;
+
+    if (req.query.q) {
+      search = req.query.q;
+
+      console.log(search)
+
+      const parcel = await Package.findAll({
+        where: {
+          product:{
+             [Op.iLike]: `${search}%`
+          }
+        }
+      })
+
+      return res.json(parcel);
+    } else {
+
+      const parcel = await Package.findAll({
+        where: {
+          canceled_at: null,
+        },
+      });
+
+      return res.json(parcel);
+
+    }
+
 
     const listOfPackages = packages.map((pkg) => ({
       id: pkg.id,

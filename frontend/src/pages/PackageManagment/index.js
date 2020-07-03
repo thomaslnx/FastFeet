@@ -17,7 +17,12 @@ import {
 } from './styles';
 
 export default function Packages() {
-  api.get('delivers');
+  async function parcels() {
+    const response = await api.get('packages');
+    console.log(response.data);
+    }
+
+  parcels();
 
   return (
     <>
