@@ -63,8 +63,6 @@ class PackageController {
     if (req.query.q) {
       search = req.query.q;
 
-      console.log(search)
-
       const parcel = await Package.findAll({
         where: {
           product:{
