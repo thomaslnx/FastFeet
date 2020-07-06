@@ -19,6 +19,10 @@ class Package extends Model {
 
     return this;
   }
+
+  static associate(models) {
+    this.belongsTo(models.Recipient, { foreignKey: 'id' });
+  }
 }
 
 export default Package;

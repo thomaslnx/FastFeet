@@ -78,6 +78,10 @@ class PackageController {
         where: {
           canceled_at: null,
         },
+        include: {
+          model: Recipient,
+          attributes: ['name', 'street']
+        },
       });
 
       return res.json(parcel);
