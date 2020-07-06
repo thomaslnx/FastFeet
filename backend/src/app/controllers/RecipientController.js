@@ -18,11 +18,10 @@ class RecipientController {
       })
 
       return res.json(recipients);
-    } else {
-
+    }
+    else {
       const recipient = await Recipient.findAll();
       return res.json(recipient);
-
     }
   }
 
