@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+import Sequelize, { Op } from 'Sequelize';
 import Deliver from '../models/Deliver';
 
 class DeliverController {
@@ -38,9 +39,26 @@ class DeliverController {
 
   // Method to list all delivers.
   async index(req, res) {
-    const delivers = await Deliver.findAll();
+    let deliver;
 
-    return res.json(delivers);
+    if (req.query.q) {
+      deliver = req.query.q;
+
+      const parcel = await Deliver.findAll({
+        where: {
+          name:{
+            [Op.iLike]: `${deliver}%`,
+          }
+        }
+      })
+
+      return res.json(parcel);
+    } else {
+
+      const delivers = await Deliver.findAll();
+      return res.json(delivers);
+
+    }
   }
 
   // Method to update a deliver based on his id.

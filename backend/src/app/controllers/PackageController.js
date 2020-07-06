@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import { Op } from 'Sequelize'
+import { Op } from 'Sequelize';
 import Package from '../models/Package';
 
 import Deliver from '../models/Deliver';

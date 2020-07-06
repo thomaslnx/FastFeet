@@ -45,6 +45,7 @@ routes.use(authMiddleware);
 // Rotas para os recipients
 routes.post('/recipients', RecipientController.store);
 routes.put('/recipients', RecipientController.update);
+routes.get('/recipients', RecipientController.index);
 
 // Rotas para os delivers
 routes.get('/delivers', DeliverController.index);
