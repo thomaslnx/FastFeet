@@ -22,6 +22,7 @@ class Package extends Model {
 
   static associate(models) {
     this.belongsTo(models.Recipient, { foreignKey: 'recipient_id' });
+    this.belongsTo(models.Deliver, { foreignKey: 'deliveryman_id' });
   }
 }
 

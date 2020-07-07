@@ -81,10 +81,15 @@ class PackageController {
             [Op.ne]: null,
           },
         },
-        include: {
+        include: [{
           model: Recipient,
           attributes: ['id', 'name', 'street', 'house_number', 'state', 'city', 'cep']
         },
+        {
+          model: Deliver,
+          attributes: ['id', 'name', 'email']
+        }
+        ],
       });
 
       return res.json(parcel);
