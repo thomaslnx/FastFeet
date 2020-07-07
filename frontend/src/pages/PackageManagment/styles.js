@@ -12,7 +12,7 @@ export const Content = styled.div`
   height: 100%;
   align-self: center;
   width: 100%;
-  max-width: 1350px;
+  max-width: 1550px;
 `;
 
 export const Title = styled.h1`
@@ -92,7 +92,7 @@ export const List = styled.div`
   display: flex;
   background-color: #ffffff;
   width: 100%;
-  max-width: 1350px;
+  max-width: 1550px;
   height: 57px;
   border: none;
   border-radius: 4px;
@@ -100,8 +100,9 @@ export const List = styled.div`
 
   ul {
     display: flex;
+    justify-content: space-between;
     width: 100%;
-    max-width: 1350px;
+    max-width: 1550px;
     justify-content: space-between;
     align-items: center;
     list-style: none;
@@ -112,27 +113,32 @@ export const List = styled.div`
   }
 
   li {
-    flex-basis: calc(25% - 20px;);
+    flex-basis: calc(25% - 20px);
   }
 
   .id {
-    margin-left: -5px;
   }
 
   .recipient {
-    margin-left: 35px;
+    margin-left: 0px;
   }
 
   .deliver {
-    margin-left: -20px;
+    margin-left: 100px;
+    width: 400px;
+
+    .sb-avatar {
+      margin-right: 10px;
+      font-family: Roboto, sans-serif;
+    }
   }
 
   .city {
-    margin-left: 70px;
+    margin-left: 75px;
   }
 
   .state {
-    margin-left: 30px;
+    margin-left: 50px;
   }
 
   .status span {
@@ -145,6 +151,7 @@ export const List = styled.div`
     border: none;
     border-radius: 12px;
     padding: 5px 15px;
+    margin-left: 50px;
 
     svg {
       width: 10px;
@@ -153,6 +160,63 @@ export const List = styled.div`
   }
 
   .actions {
-    color: #c6c6c6;
+    position: relative;
+    left: 150px;
+
+    .menu-button {
+      border: none;
+      background: transparent;
+
+      svg {
+        color: #c6c6c6;
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    .menu {
+      display: flex;
+      flex-direction: column;
+      align-items: start;
+      padding-left: 10px;
+      border: none;
+      border-radius: 4px;
+      background: #FFFFFF;
+      box-shadow: 0px 0px 2px #000026;
+      width: 150px;
+      height: 120px;
+
+      button {
+        border: none;
+        background-color: transparent;
+        font-family: Roboto, sans-serif;
+        color: #999999;
+        font-size: 16px;
+      }
+
+      button.visualizar {
+        svg {
+          width: 20px;
+          height: 16px;
+          fill: #8E5BE8;
+        }
+      }
+
+      button.editar {
+        svg {
+          width: 15px;
+          height: 15px;
+          fill: #4D85EE;
+        }
+      }
+
+      button.excluir {
+        svg {
+          width: 15px;
+          height: 15px;
+          fill: #DE3B3B;
+        }
+      }
+    }
   }
 `;
