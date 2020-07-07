@@ -77,10 +77,13 @@ class PackageController {
       const parcel = await Package.findAll({
         where: {
           canceled_at: null,
+          recipient_id: {
+            [Op.ne]: null,
+          },
         },
         include: {
           model: Recipient,
-          attributes: ['name', 'street']
+          attributes: ['id', 'name', 'street', 'house_number', 'state', 'city', 'cep']
         },
       });
 
